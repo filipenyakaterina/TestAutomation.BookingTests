@@ -55,4 +55,8 @@ public class Waiter {
     public static void waitUntilElementWillBePresent(By locator) {
         driverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
+    public static void waitUntilPageWillBeReloaded() {
+        driverWait.until(driver -> ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0"));
+    }
 }

@@ -3,6 +3,7 @@ package service;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 public class Executor {
@@ -19,6 +20,7 @@ public class Executor {
     }
 
     public static void clickElementWithActions(WebElement element) {
-        actions.moveToElement(element).click(element).perform();
+        Action clickElement = actions.moveToElement(element).click(element).build();
+        clickElement.perform();
     }
 }

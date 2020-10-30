@@ -16,7 +16,8 @@ public class BasicTests extends CommonConditions {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
         String departure = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
-                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).getDeparture();
+                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                getSearchBox().getDeparture();
         Assert.assertEquals(departure, testInstance.getDeparture());
     }
 
@@ -25,7 +26,8 @@ public class BasicTests extends CommonConditions {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
         LocalDate checkInDate = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
-                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).getCheckInDate();
+                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                getSearchBox().getCheckInDate();
         Assert.assertEquals(checkInDate, testInstance.getCheckInDate());
     }
 
@@ -34,7 +36,8 @@ public class BasicTests extends CommonConditions {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
         LocalDate checkOutDate = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
-                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).getCheckOutDate();
+                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                getSearchBox().getCheckOutDate();
         Assert.assertEquals(checkOutDate, testInstance.getCheckOutDate());
     }
 
@@ -43,7 +46,8 @@ public class BasicTests extends CommonConditions {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
         int adultsCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
-                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).getAdultsCount();
+                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                getSearchBox().getAdultsCount();
         Assert.assertEquals(adultsCount, testInstance.getAdultsCount());
     }
 
@@ -52,7 +56,8 @@ public class BasicTests extends CommonConditions {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
         int childrenCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
-                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).getChildrenCount();
+                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                getSearchBox().getChildrenCount();
         Assert.assertEquals(childrenCount, testInstance.getChildrenCount());
     }
 
@@ -61,7 +66,8 @@ public class BasicTests extends CommonConditions {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
         int roomsCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
-                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).getRoomsCount();
+                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                getSearchBox().getRoomsCount();
         Assert.assertEquals(roomsCount, testInstance.getRoomsCount());
     }
 }
