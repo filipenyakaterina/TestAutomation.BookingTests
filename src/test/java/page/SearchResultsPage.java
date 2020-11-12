@@ -1,13 +1,12 @@
 package page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import service.Waiter;
 
 public class SearchResultsPage extends AbstractPage {
     public SearchResultsPage(WebDriver driver) {
         super(driver);
-        Waiter.waitUntilSearchResultsBeDisplayed(By.tagName("body"));
+        Waiter.waitUntilPageBodyWillBeUploaded();
     }
 
     @Override

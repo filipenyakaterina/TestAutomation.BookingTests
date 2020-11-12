@@ -10,10 +10,12 @@ public class Waiter {
     private static final String ARIA_EXPANDED_ATTRIBUTE = "aria-expanded";
     private static final String FALSE_VALUE = "false";
     private static final String TRUE_VALUE = "true";
-    private static final String ID_ATTRIBUTE = "id";
-    private static final String SEARCH_RESULTS_VALUE = "searchresultsPage";
     private static final String STYLE_ATTRIBUTE = "style";
     private static final String STYLE_ATTRIBUTE_DISPLAY_VALUE = "display: block;";
+    private static final String CLASS_ATTRIBUTE = "class";
+    private static final String BODY_TAG = "body";
+    private static final String BODY_LOADING_CLASS = "iconfont_is_loading";
+    private static final String BODY_UPLOADED_STYLE = "overflow: auto;";
 
     private static FluentWait driverWait;
 
@@ -41,14 +43,19 @@ public class Waiter {
         driverWait.until(driver -> ((WebDriver) driver).findElement(locator).getAttribute(STYLE_ATTRIBUTE).isEmpty());
     }
 
-    public static void waitUntilSearchResultsBeDisplayed(By locator) {
-        driverWait.until(ExpectedConditions.attributeContains(locator, ID_ATTRIBUTE, SEARCH_RESULTS_VALUE));
-    }
-
     public static void clickElementAndWaitAppearanceOfOther(WebElement clickableElement, By appearedElement) {
         driverWait.until(driver -> {
             Executor.clickElementWithActions(clickableElement);
             return ((WebDriver) driver).findElement(appearedElement).getAttribute(STYLE_ATTRIBUTE).equals(STYLE_ATTRIBUTE_DISPLAY_VALUE);
+        });
+    }
+
+    public static void waitUntilPopupWillBeExpanded(WebElement popup, WebElement optionList) {
+        driverWait.until(driver -> {
+            String popupAttr = popup.getAttribute(ARIA_EXPANDED_ATTRIBUTE);
+            String optionListAttr = optionList.getAttribute(STYLE_ATTRIBUTE);
+            if (popupAttr == null) return optionListAttr.equals(STYLE_ATTRIBUTE_DISPLAY_VALUE);
+            return popupAttr.equals(TRUE_VALUE) || optionListAttr.equals(STYLE_ATTRIBUTE_DISPLAY_VALUE);
         });
     }
 
@@ -58,5 +65,12 @@ public class Waiter {
 
     public static void waitUntilPageWillBeReloaded() {
         driverWait.until(driver -> ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0"));
+    }
+
+    public static void waitUntilPageBodyWillBeUploaded() {
+        driverWait.until(driver -> {
+            WebElement body = ((WebDriver) driver).findElement(By.tagName(BODY_TAG));
+            return !(body.getAttribute(CLASS_ATTRIBUTE).contains(BODY_LOADING_CLASS)) && (body.getAttribute(STYLE_ATTRIBUTE).equals(BODY_UPLOADED_STYLE));
+        });
     }
 }

@@ -22,4 +22,14 @@ public class SortTests extends CommonConditions {
                 getSortBar().sortByPrice().getPrices();
         Assert.assertTrue(Conditions.checkIfListSortedByAscending(prices));
     }
+
+    @Test(description = "Check sort by count of stars on Search Results page")
+    public void checkSortByStarsCount() {
+        Instance testInstance = InstanceCreator.getInstanceFromProperty();
+        List<Integer> starsCounts = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+                enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
+                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                getSortBar().sortByStars().getStarsCounts();
+        Assert.assertTrue(Conditions.checkIfListSortedByDescending(starsCounts));
+    }
 }

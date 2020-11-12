@@ -12,6 +12,9 @@ public class ResultsListPage extends AbstractPage {
     @FindBy(xpath = "//div[contains(@class,'bui-price-display__value')]")
     List<WebElement> priceLabels;
 
+    @FindBy(xpath = "//span[@class = 'c-accommodation-classification-rating']//span[contains(@aria-label,'out of 5')]")
+    List<WebElement> ratingSpans;
+
     public ResultsListPage(WebDriver driver) {
         super(driver);
     }
@@ -25,5 +28,10 @@ public class ResultsListPage extends AbstractPage {
     public List<Integer> getPrices() {
         return priceLabels.stream().map(priceLabel ->
                 ValueFormatter.getValueFromPrice(priceLabel.getText())).collect(Collectors.toList());
+    }
+
+    public List<Integer> getStarsCounts() {
+        return ratingSpans.stream().map(ratingSpan ->
+                ValueFormatter.getValueFromRating(ratingSpan.getAttribute("aria-label"))).collect(Collectors.toList());
     }
 }
