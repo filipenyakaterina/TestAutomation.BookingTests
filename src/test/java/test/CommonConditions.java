@@ -9,6 +9,7 @@ import utils.TestListener;
 
 @Listeners({TestListener.class})
 public class CommonConditions {
+    protected static final String LANGUAGE_KEY = "en-us";
     protected WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)

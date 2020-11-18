@@ -1,5 +1,6 @@
 package test;
 
+import exceptions.NoSuchSortCategoryException;
 import model.Instance;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -11,8 +12,6 @@ import java.util.List;
 
 
 public class SortTests extends CommonConditions {
-    private static final String LANGUAGE_KEY = "en-us";
-
     @Test(description = "Check sort by price on Search Results page")
     public void checkSortByPrice() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
@@ -31,5 +30,19 @@ public class SortTests extends CommonConditions {
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSortBar().sortByStars().getStarsCounts();
         Assert.assertTrue(Conditions.checkIfListSortedByDescending(starsCounts));
+    }
+
+    @Test(description = "Check sort by distance from downtown on Search Results page")
+    public void checkSortByDistance() {
+        Instance testInstance = InstanceCreator.getInstanceFromProperty();
+        try {
+            List<Integer> distances = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+                    enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
+                            testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                    getSortBar().sortByDistance().getDistances();
+            Assert.assertTrue(Conditions.checkIfListSortedByAscending(distances));
+        } catch (NoSuchSortCategoryException e) {
+            e.printStackTrace();
+        }
     }
 }

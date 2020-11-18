@@ -15,6 +15,9 @@ public class ResultsListPage extends AbstractPage {
     @FindBy(xpath = "//span[@class = 'c-accommodation-classification-rating']//span[contains(@aria-label,'out of 5')]")
     List<WebElement> ratingSpans;
 
+    @FindBy(xpath = "//span[contains(text(),'from center')]")
+    List<WebElement> distanceSpans;
+
     public ResultsListPage(WebDriver driver) {
         super(driver);
     }
@@ -33,5 +36,10 @@ public class ResultsListPage extends AbstractPage {
     public List<Integer> getStarsCounts() {
         return ratingSpans.stream().map(ratingSpan ->
                 ValueFormatter.getValueFromRating(ratingSpan.getAttribute("aria-label"))).collect(Collectors.toList());
+    }
+
+    public List<Integer> getDistances() {
+        return distanceSpans.stream().map(distanceSpan ->
+                ValueFormatter.getValueInMetersFromDistance(distanceSpan.getText())).collect(Collectors.toList());
     }
 }

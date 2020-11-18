@@ -9,8 +9,6 @@ import service.InstanceCreator;
 import java.time.LocalDate;
 
 public class BasicTests extends CommonConditions {
-    private static final String LANGUAGE_KEY = "en-us";
-
     @Test(description = "Check field Departure on Search Results page")
     public void checkDeparture() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
