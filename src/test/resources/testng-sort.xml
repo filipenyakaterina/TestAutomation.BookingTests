@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="SortTests" verbose="1" >
+    <test name="Check sorting"   >
+        <classes>
+            <class name="test.SortTests" />
+        </classes>
+    </test>
+</suite>

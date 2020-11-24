@@ -1,16 +1,12 @@
 package page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import service.Executor;
-import service.Waiter;
+import page_elements.CurrencyOption;
+import page_elements.LanguageOption;
 import utils.TestLogger;
 
 public class BookingHomePage extends AbstractPage {
     public static final String HOMEPAGE_URL = "https://www.booking.com/";
-
-    private By languageOptionLocator;
 
     public BookingHomePage(WebDriver driver) {
         super(driver);
@@ -22,37 +18,21 @@ public class BookingHomePage extends AbstractPage {
         return this;
     }
 
-    public BookingSearchPage selectLanguage(String languageKey) {
-        By languagesLinkLocator = By.xpath("//li[@data-id = 'language_selector']/a");
-        By languagesButtonLocator = By.xpath("//button[contains(@data-modal-id,'language-selection')]");
+    public BookingHomePage selectLanguage(String languageCode) {
+        LanguageOption language = new LanguageOption(driver);
+        language.select(languageCode);
+        TestLogger.writeMessage("Language with code " + languageCode + " was selected");
+        return this;
+    }
 
-        languageOptionLocator = By.xpath("//a[@hreflang = '" + languageKey + "']");
-        if (!driver.findElements(languagesLinkLocator).isEmpty()) {
-            selectLanguageWithLink(languagesLinkLocator);
-        } else if (!driver.findElements(languagesButtonLocator).isEmpty()) {
-            selectLanguageWithButton(languagesButtonLocator);
-        }
-        TestLogger.writeMessage("English(US) language was selected");
+    public BookingHomePage selectCurrency(String currencyCode) {
+        CurrencyOption currency = new CurrencyOption(driver);
+        currency.select(currencyCode);
+        TestLogger.writeMessage("Currency with code " + currencyCode + " was selected");
+        return this;
+    }
+
+    public BookingSearchPage searchBooking() {
         return new BookingSearchPage(driver);
-    }
-
-    private void selectLanguageWithLink(By linkLocator) {
-        WebElement languagesLink = driver.findElement(linkLocator);
-        Waiter.expandElementAndWait(languagesLink);
-        selectLanguageOption(languageOptionLocator);
-        Waiter.waitUntilElementWillBeClickable(linkLocator);
-        Waiter.waitUntilElementNotBeExpanded(linkLocator);
-    }
-
-    private void selectLanguageWithButton(By buttonLocator) {
-        WebElement languagesButton = driver.findElement(buttonLocator);
-        Executor.clickElementWithJS(languagesButton);
-        selectLanguageOption(languageOptionLocator);
-        Waiter.waitUntilElementNotBeHidden(By.tagName("body"));
-    }
-
-    private void selectLanguageOption(By optionLocator) {
-        WebElement languageOption = driver.findElement(optionLocator);
-        Executor.clickElementWithJS(languageOption);
     }
 }

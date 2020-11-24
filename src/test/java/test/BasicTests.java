@@ -12,7 +12,7 @@ public class BasicTests extends CommonConditions {
     @Test(description = "Check field Departure on Search Results page")
     public void checkDeparture() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
-        String departure = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+        String departure = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSearchBox().getDeparture();
@@ -22,7 +22,7 @@ public class BasicTests extends CommonConditions {
     @Test(description = "Check field Check-in-date on Search Results page")
     public void checkCheckInDate() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
-        LocalDate checkInDate = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+        LocalDate checkInDate = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSearchBox().getCheckInDate();
@@ -32,7 +32,7 @@ public class BasicTests extends CommonConditions {
     @Test(description = "Check field Check-out-date on Search Results page")
     public void checkCheckOutDate() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
-        LocalDate checkOutDate = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+        LocalDate checkOutDate = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSearchBox().getCheckOutDate();
@@ -42,7 +42,7 @@ public class BasicTests extends CommonConditions {
     @Test(description = "Check field Adults on Search Results page")
     public void checkAdultsCount() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
-        int adultsCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+        int adultsCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSearchBox().getAdultsCount();
@@ -52,7 +52,7 @@ public class BasicTests extends CommonConditions {
     @Test(description = "Check field Children on Search Results page")
     public void checkChildrenCount() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
-        int childrenCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+        int childrenCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSearchBox().getChildrenCount();
@@ -62,7 +62,7 @@ public class BasicTests extends CommonConditions {
     @Test(description = "Check field Rooms on Search Results page")
     public void checkRoomsCount() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
-        int roomsCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+        int roomsCount = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSearchBox().getRoomsCount();

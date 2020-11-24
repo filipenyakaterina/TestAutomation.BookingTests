@@ -15,7 +15,7 @@ public class SortTests extends CommonConditions {
     @Test(description = "Check sort by price on Search Results page")
     public void checkSortByPrice() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
-        List<Integer> prices = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+        List<Integer> prices = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSortBar().sortByPrice().getPrices();
@@ -25,7 +25,7 @@ public class SortTests extends CommonConditions {
     @Test(description = "Check sort by count of stars on Search Results page")
     public void checkSortByStarsCount() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
-        List<Integer> starsCounts = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+        List<Integer> starsCounts = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                 enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                         testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                 getSortBar().sortByStars().getStarsCounts();
@@ -36,7 +36,7 @@ public class SortTests extends CommonConditions {
     public void checkSortByDistance() {
         Instance testInstance = InstanceCreator.getInstanceFromProperty();
         try {
-            List<Integer> distances = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_KEY).
+            List<Integer> distances = new BookingHomePage(driver).openPage().selectLanguage(LANGUAGE_CODE).searchBooking().
                     enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
                             testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
                     getSortBar().sortByDistance().getDistances();
