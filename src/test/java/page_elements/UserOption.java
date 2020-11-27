@@ -36,12 +36,13 @@ public abstract class UserOption {
 
     private void selectOptionWithButton() {
         WebElement button = driver.findElement(buttonLocator);
-        Executor.clickElementWithJS(button);
+        Waiter.clickAndWaitUntilBodyBeHidden(button);
         selectOption();
-        Waiter.waitUntilElementNotBeHidden(By.tagName("body"));
+        Waiter.waitUntilBodyNotBeHidden();
     }
 
     private void selectOption() {
+        Waiter.waitUntilElementWillBePresent(optionLocator);
         WebElement option = driver.findElement(optionLocator);
         Executor.clickElementWithJS(option);
     }

@@ -22,4 +22,6 @@ public class SearchResultsPage extends AbstractPage {
     public SortBarPage getSortBar() {
         return new SortBarPage(driver);
     }
+
+    public FilterBoxPage getFilterBox() { return new FilterBoxPage(driver); }
 }

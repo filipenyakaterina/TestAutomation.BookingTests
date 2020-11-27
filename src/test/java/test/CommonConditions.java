@@ -10,6 +10,8 @@ import utils.TestListener;
 @Listeners({TestListener.class})
 public class CommonConditions {
     protected static final String LANGUAGE_CODE = "en-us";
+    protected static final String CURRENCY_CODE = "EUR";
+
     protected WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)

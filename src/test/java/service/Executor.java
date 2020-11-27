@@ -19,8 +19,17 @@ public class Executor {
         javascriptExecutor.executeScript("arguments[0].click();", element);
     }
 
+    public static void scrollToElement(WebElement element) {
+        javascriptExecutor.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
     public static void clickElementWithActions(WebElement element) {
         Action clickElement = actions.moveToElement(element).click(element).build();
         clickElement.perform();
+    }
+
+    public static void dragAndDropElementHorizontally (WebElement element, int offset){
+        Action dragAndDropElement = actions.moveToElement(element).dragAndDropBy(element,offset,0).build();
+        dragAndDropElement.perform();
     }
 }

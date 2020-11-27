@@ -12,6 +12,7 @@ public class Waiter {
     private static final String TRUE_VALUE = "true";
     private static final String STYLE_ATTRIBUTE = "style";
     private static final String STYLE_ATTRIBUTE_DISPLAY_VALUE = "display: block;";
+    private static final String STYLE_ATTRIBUTE_HIDDEN_VALUE = "overflow: hidden;";
     private static final String CLASS_ATTRIBUTE = "class";
     private static final String BODY_TAG = "body";
     private static final String BODY_LOADING_CLASS = "iconfont_is_loading";
@@ -39,8 +40,15 @@ public class Waiter {
         driverWait.until(ExpectedConditions.attributeToBe(locator, ARIA_EXPANDED_ATTRIBUTE, FALSE_VALUE));
     }
 
-    public static void waitUntilElementNotBeHidden(By locator) {
-        driverWait.until(driver -> ((WebDriver) driver).findElement(locator).getAttribute(STYLE_ATTRIBUTE).isEmpty());
+    public static void waitUntilBodyNotBeHidden() {
+        driverWait.until(driver -> ((WebDriver) driver).findElement(By.tagName(BODY_TAG)).getAttribute(STYLE_ATTRIBUTE).isEmpty());
+    }
+
+    public static void clickAndWaitUntilBodyBeHidden(WebElement clickableElement){
+        driverWait.until(driver -> {
+            Executor.clickElementWithJS(clickableElement);
+            return ((WebDriver) driver).findElement(By.tagName(BODY_TAG)).getAttribute(STYLE_ATTRIBUTE).contains(STYLE_ATTRIBUTE_HIDDEN_VALUE);
+        });
     }
 
     public static void clickElementAndWaitAppearanceOfOther(WebElement clickableElement, By appearedElement) {
