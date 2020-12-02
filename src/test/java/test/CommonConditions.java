@@ -9,8 +9,8 @@ import utils.TestListener;
 
 @Listeners({TestListener.class})
 public class CommonConditions {
-    protected static final String LANGUAGE_CODE = "en-us";
-    protected static final String CURRENCY_CODE = "EUR";
+    public static final String LANGUAGE_CODE = "en-us";
+    public static final String CURRENCY_CODE = "EUR";
 
     protected WebDriver driver;
 

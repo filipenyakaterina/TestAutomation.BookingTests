@@ -19,4 +19,12 @@ public class Conditions {
         }
         return true;
     }
+
+    public static boolean checkIfListConsistsOfNumbersInRange(List<Integer> listOfNumbers, int minNumber, int maxNumber) {
+        for (int number : listOfNumbers) {
+            if ((number < minNumber) || (number > maxNumber))
+                return false;
+        }
+        return true;
+    }
 }
