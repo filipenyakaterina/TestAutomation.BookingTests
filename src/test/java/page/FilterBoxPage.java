@@ -1,5 +1,6 @@
 package page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,6 +37,14 @@ public class FilterBoxPage extends AbstractPage {
         Waiter.waitUntilPageWillBeReloaded();
         TestLogger.writeMessage("Search results were filtered according to the price per night from " +
                 minBudgetValue + CURRENCY_CODE + " to " + maxBudgetValue + CURRENCY_CODE);
+        return new ResultsListPage(driver);
+    }
+
+    public ResultsListPage filterByReviewScore(int reviewScoreValue) {
+        WebElement reviewScore = driver.findElement(By.xpath("//div[@id='filter_review']//a[@data-id='review_score-" + reviewScoreValue + "0']"));
+        Executor.clickElementWithJS(reviewScore);
+        Waiter.waitUntilPageWillBeReloaded();
+        TestLogger.writeMessage("Search results were filtered according to the review score above " + reviewScoreValue);
         return new ResultsListPage(driver);
     }
 }

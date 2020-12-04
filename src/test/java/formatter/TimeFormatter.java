@@ -1,8 +1,11 @@
 package formatter;
 
+import test.CommonConditions;
+
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class TimeFormatter {
     private static final String DATE_FORMAT = "EEEE d MMMM yyyy";
@@ -24,6 +27,6 @@ public class TimeFormatter {
     }
 
     private static LocalDate parseLocalDateWithFormat(String dateValue, String format) {
-        return LocalDate.parse(dateValue, DateTimeFormatter.ofPattern(format));
+        return LocalDate.parse(dateValue, DateTimeFormatter.ofPattern(format).withLocale(Locale.forLanguageTag(CommonConditions.LANGUAGE_CODE)));
     }
 }

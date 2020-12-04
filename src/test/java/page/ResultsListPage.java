@@ -18,6 +18,9 @@ public class ResultsListPage extends AbstractPage {
     @FindBy(xpath = "//span[contains(text(),'from center')]")
     List<WebElement> distanceSpans;
 
+    @FindBy(xpath = "//div[@class='bui-review-score__badge']")
+    List<WebElement> scoreDivs;
+
     public ResultsListPage(WebDriver driver) {
         super(driver);
     }
@@ -41,5 +44,9 @@ public class ResultsListPage extends AbstractPage {
     public List<Integer> getDistances() {
         return distanceSpans.stream().map(distanceSpan ->
                 ValueFormatter.getValueInMetersFromDistance(distanceSpan.getText())).collect(Collectors.toList());
+    }
+
+    public List<Double> getScores() {
+        return scoreDivs.stream().map(scoreDiv -> ValueFormatter.getValueFromReviewScore(scoreDiv.getText())).collect(Collectors.toList());
     }
 }

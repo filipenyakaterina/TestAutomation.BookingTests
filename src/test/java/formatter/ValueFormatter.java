@@ -37,4 +37,8 @@ public class ValueFormatter {
                 (numericalValueOfDistance * METERS_IN_KILOMETER) : numericalValueOfDistance;
         return (int) valueInMeters;
     }
+
+    public static Double getValueFromReviewScore(String reviewScore) {
+        return Double.valueOf(reviewScore.trim());
+    }
 }

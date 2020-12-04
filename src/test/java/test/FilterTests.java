@@ -22,4 +22,14 @@ public class FilterTests extends CommonConditions {
         Assert.assertTrue(Conditions.checkIfListConsistsOfNumbersInRange(prices,
                 testInstance.getMinPricePerNight() * daysCount, testInstance.getMaxPricePerNight() * daysCount));
     }
+
+    @Test(description = "Check filter by review score on Search Results page")
+    public void checkFilterByReviewScore() {
+        Instance testInstance = InstanceCreator.getInstanceFromProperty();
+        List<Double> scores = new BookingHomePage(driver).openPage().selectCurrency(CURRENCY_CODE).selectLanguage(LANGUAGE_CODE).searchBooking().
+                enterSearchData(testInstance.getDeparture(), testInstance.getCheckInDate(), testInstance.getCheckOutDate(),
+                        testInstance.getAdultsCount(), testInstance.getChildrenCount(), testInstance.getRoomsCount()).
+                getFilterBox().filterByReviewScore(testInstance.getReviewScore()).getScores();
+        Assert.assertTrue(Conditions.checkIfListNotContainNumberLessThen(scores, testInstance.getReviewScore()));
+    }
 }

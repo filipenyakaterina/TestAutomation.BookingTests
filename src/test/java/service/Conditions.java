@@ -21,10 +21,10 @@ public class Conditions {
     }
 
     public static boolean checkIfListConsistsOfNumbersInRange(List<Integer> listOfNumbers, int minNumber, int maxNumber) {
-        for (int number : listOfNumbers) {
-            if ((number < minNumber) || (number > maxNumber))
-                return false;
-        }
-        return true;
+        return listOfNumbers.stream().noneMatch(listMember -> (listMember < minNumber) || (listMember > maxNumber));
+    }
+
+    public static boolean checkIfListNotContainNumberLessThen(List<Double> listOfNumbers, int minNumber) {
+        return listOfNumbers.stream().noneMatch(listMember -> listMember < minNumber);
     }
 }
