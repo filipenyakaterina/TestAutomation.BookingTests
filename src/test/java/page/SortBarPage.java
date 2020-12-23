@@ -35,14 +35,14 @@ public class SortBarPage extends AbstractPage {
                 "page without executing search on Booking search page.");
     }
 
-    public ResultsListPage sortByPrice() {
+    public SearchResultsPage sortByPrice() {
         priceSort.click();
         Waiter.waitUntilPageWillBeReloaded();
         TestLogger.writeMessage("Search results were sorted by price.");
-        return new ResultsListPage(driver);
+        return new SearchResultsPage(driver);
     }
 
-    public ResultsListPage sortByStars() {
+    public SearchResultsPage sortByStars() {
         if (!starsSort.isDisplayed()) {
             Executor.clickElementWithJS(moreOptionsButton);
         }
@@ -50,11 +50,11 @@ public class SortBarPage extends AbstractPage {
         Waiter.waitUntilPopupWillBeExpanded(starsSort, listStarsSorts);
         Executor.clickElementWithJS(starsSortByDescending);
         Waiter.waitUntilPageWillBeReloaded();
-        TestLogger.writeMessage("Search results were sorted by stars count.");
-        return new ResultsListPage(driver);
+        TestLogger.writeMessage("Search results were sorted by descending of stars count.");
+        return new SearchResultsPage(driver);
     }
 
-    public ResultsListPage sortByDistance() throws NoSuchSortCategoryException {
+    public SearchResultsPage sortByDistance() throws NoSuchSortCategoryException {
         String distanceSortXpath = "//li[@class = ' sort_category   sort_distance_from_search ']/a";
         By distanceSortLocator = By.xpath(distanceSortXpath);
         WebElement distanceSort;
@@ -66,6 +66,6 @@ public class SortBarPage extends AbstractPage {
         Executor.clickElementWithJS(distanceSort);
         Waiter.waitUntilPageWillBeReloaded();
         TestLogger.writeMessage("Search results were sorted by distance from downtown.");
-        return new ResultsListPage(driver);
+        return new SearchResultsPage(driver);
     }
 }

@@ -1,5 +1,8 @@
 package page;
 
+import model.Distance;
+import model.ReviewScore;
+import model.StarRating;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,20 +34,38 @@ public class FilterBoxPage extends AbstractPage {
                 "page without executing search on Booking search page.");
     }
 
-    public ResultsListPage filterByOwnBudget(int minBudgetValue, int maxBudgetValue) {
+    public SearchResultsPage filterByOwnBudget(int minBudgetValue, int maxBudgetValue) {
         Executor.clickElementWithJS(budgetSwitcher);
         new BudgetHandler(lowerHandler, upperHandler).setRange(minBudgetValue, maxBudgetValue);
         Waiter.waitUntilPageWillBeReloaded();
         TestLogger.writeMessage("Search results were filtered according to the price per night from " +
                 minBudgetValue + CURRENCY_CODE + " to " + maxBudgetValue + CURRENCY_CODE);
-        return new ResultsListPage(driver);
+        return new SearchResultsPage(driver);
     }
 
-    public ResultsListPage filterByReviewScore(int reviewScoreValue) {
-        WebElement reviewScore = driver.findElement(By.xpath("//div[@id='filter_review']//a[@data-id='review_score-" + reviewScoreValue + "0']"));
+    public SearchResultsPage filterByReviewScore(ReviewScore reviewScoreValue) {
+        WebElement reviewScore = driver.findElement(By.xpath("//div[@id='filter_review']//a[@data-id='review_score-" + reviewScoreValue.getDataValue() + "0']"));
         Executor.clickElementWithJS(reviewScore);
         Waiter.waitUntilPageWillBeReloaded();
-        TestLogger.writeMessage("Search results were filtered according to the review score above " + reviewScoreValue);
-        return new ResultsListPage(driver);
+        TestLogger.writeMessage("Search results were filtered according to the review score " + reviewScoreValue);
+        return new SearchResultsPage(driver);
+    }
+
+    public SearchResultsPage filterByStarRating(StarRating starRatingValue) {
+        WebElement starRating = driver.findElement(By.xpath("//div[@id='filter_class']//a[@data-id='class-" + starRatingValue.getDataValue() + "']"));
+        Executor.scrollToElement(starRating);
+        Executor.clickElementWithJS(starRating);
+        Waiter.waitUntilPageWillBeReloaded();
+        TestLogger.writeMessage("Search results were filtered according to the star rating " + starRatingValue);
+        return new SearchResultsPage(driver);
+    }
+
+    public SearchResultsPage filterByDistance(Distance distanceValue) {
+        WebElement distance = driver.findElement(By.xpath("//div[@id='filter_distance']//a[@data-id='distance-" + distanceValue.getDataValue() + "']"));
+        Executor.scrollToElement(distance);
+        Executor.clickElementWithJS(distance);
+        Waiter.waitUntilPageWillBeReloaded();
+        TestLogger.writeMessage("Search results were filtered according to the distance from city center " + distanceValue);
+        return new SearchResultsPage(driver);
     }
 }

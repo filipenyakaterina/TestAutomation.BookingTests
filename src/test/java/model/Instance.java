@@ -1,5 +1,8 @@
 package model;
 
+import exceptions.NoSuchFilterOptionException;
+import service.FilterOptionCreator;
+
 import java.time.LocalDate;
 
 public class Instance {
@@ -11,10 +14,13 @@ public class Instance {
     private int roomsCount;
     private int minPricePerNight;
     private int maxPricePerNight;
-    private int reviewScore;
+    private ReviewScore reviewScore;
+    private StarRating starRating;
+    private Distance distance;
 
     public Instance(String departure, String checkInDate, String checkOutDate, String adultsCount,
-                    String childrenCount, String roomsCount, String minPricePerNight, String maxPricePerNight, String reviewScore) {
+                    String childrenCount, String roomsCount, String minPricePerNight, String maxPricePerNight, String reviewScore,
+                    String starRating, String distance) {
         this.departure = departure;
         this.checkInDate = LocalDate.parse(checkInDate);
         this.checkOutDate = LocalDate.parse(checkOutDate);
@@ -23,7 +29,13 @@ public class Instance {
         this.roomsCount = Integer.parseInt(roomsCount);
         this.minPricePerNight = Integer.parseInt(minPricePerNight);
         this.maxPricePerNight = Integer.parseInt(maxPricePerNight);
-        this.reviewScore = Integer.parseInt(reviewScore);
+        try {
+            this.reviewScore = FilterOptionCreator.getFilterOptionFromDataValue(ReviewScore.class, reviewScore);
+            this.starRating = FilterOptionCreator.getFilterOptionFromDataValue(StarRating.class, starRating);
+            this.distance = FilterOptionCreator.getFilterOptionFromDataValue(Distance.class, distance);
+        } catch (NoSuchFilterOptionException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getDeparture() {
@@ -58,7 +70,15 @@ public class Instance {
         return maxPricePerNight;
     }
 
-    public int getReviewScore() {
+    public ReviewScore getReviewScore() {
         return reviewScore;
+    }
+
+    public StarRating getStarRating() {
+        return starRating;
+    }
+
+    public Distance getDistance() {
+        return distance;
     }
 }

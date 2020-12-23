@@ -27,4 +27,12 @@ public class Conditions {
     public static boolean checkIfListNotContainNumberLessThen(List<Double> listOfNumbers, int minNumber) {
         return listOfNumbers.stream().noneMatch(listMember -> listMember < minNumber);
     }
+
+    public static boolean checkIfListConsistsOfNumbersNoMoreThen(List<Integer> listOfNumbers, int maxNumber) {
+        return listOfNumbers.stream().noneMatch(listMember -> listMember > maxNumber);
+    }
+
+    public static boolean checkIfListConsistsOf(List<Integer> listOfNumbers, int numberToCheck) {
+        return listOfNumbers.stream().allMatch(listMember -> listMember == numberToCheck);
+    }
 }

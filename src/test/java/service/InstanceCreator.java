@@ -12,12 +12,15 @@ public class InstanceCreator {
     public static final String MIN_PRICE_PER_NIGHT = "testdata.instance.min-price-per-night";
     public static final String MAX_PRICE_PER_NIGHT = "testdata.instance.max-price-per-night";
     public static final String REVIEW_SCORE = "testdata.instance.review-score";
+    public static final String STAR_RATING = "testdata.instance.star-rating";
+    public static final String DISTANCE = "testdata.instance.distance";
 
     public static Instance getInstanceFromProperty() {
         return new Instance(TestDataReader.getTestData(DEPARTURE),
                 TestDataReader.getTestData(CHECK_IN_DATE), TestDataReader.getTestData(CHECK_OUT_DATE),
                 TestDataReader.getTestData(ADULTS_COUNT), TestDataReader.getTestData(CHILDREN_COUNT),
                 TestDataReader.getTestData(ROOMS_COUNT), TestDataReader.getTestData(MIN_PRICE_PER_NIGHT),
-                TestDataReader.getTestData(MAX_PRICE_PER_NIGHT), TestDataReader.getTestData(REVIEW_SCORE));
+                TestDataReader.getTestData(MAX_PRICE_PER_NIGHT), TestDataReader.getTestData(REVIEW_SCORE),
+                TestDataReader.getTestData(STAR_RATING), TestDataReader.getTestData(DISTANCE));
     }
 }
