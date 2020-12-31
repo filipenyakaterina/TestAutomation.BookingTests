@@ -2,6 +2,7 @@
 
 There are 13 tests in projects. They are
 > BasicTests
+
   `checkDeparture:`
       1. open page https://www.booking.com/
       2. select language 
