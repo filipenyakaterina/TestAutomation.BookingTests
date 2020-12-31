@@ -8,7 +8,7 @@ There are 13 tests in projects. They are
         1. open page https://www.booking.com/
         2. select language 
         3. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
-        number of children, rooms number) according to the data in test suite(dev.properties, qa.properties)
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
         4. press search button
         5. redirect to the page with search results
         6. get the value of the departure field from the search data section on the search results page
@@ -19,18 +19,18 @@ There are 13 tests in projects. They are
         1. open page https://www.booking.com/
         2. select language 
         3. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
-        number of children, rooms number) according to the data in test suite(dev.properties, qa.properties)
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
         4. press search button
         5. redirect to the page with search results
         6. get the value of the check-in-date field from the search data section on the search results page
         7. compare the value from step 6 with the check-in date value entered in step 3
       
-   checkCheckOutDate:
+    checkCheckOutDate:
   
         1. open page https://www.booking.com/
         2. select language 
         3. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
-        number of children, rooms number) according to the data in test suite(dev.properties, qa.properties)
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
         4. press search button
         5. redirect to the page with search results
         6. get the value of the check-out-date field from the search data section on the search results page
@@ -41,7 +41,7 @@ There are 13 tests in projects. They are
         1. open page https://www.booking.com/
         2. select language 
         3. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
-        number of children, rooms number) according to the data in test suite(dev.properties, qa.properties)
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
         4. press search button
         5. redirect to the page with search results
         6. get the value of the adults field from the search data section on the search results page
@@ -51,8 +51,8 @@ There are 13 tests in projects. They are
   
         1. open page https://www.booking.com/
         2. select language 
-        3. enter data values for searching booking (departure, check-in date, check-out date, number of adults, 
-        number of children, rooms number) according to the data in test suite(dev.properties, qa.properties)
+        3. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
         4. press search button
         5. redirect to the page with search results
         6. get the value of the children field from the search data section on the search results page
@@ -63,7 +63,7 @@ There are 13 tests in projects. They are
         1. open page https://www.booking.com/
         2. select language 
         3. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
-        number of children, rooms number) according to the data in test suite(dev.properties, qa.properties)
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
         4. press search button
         5. redirect to the page with search results
         6. get the value of the rooms field from the search data section on the search results page
@@ -71,4 +71,43 @@ There are 13 tests in projects. They are
       
 > SortTests
   
-    
+    checkSortByPrice:
+ 
+        1. open page https://www.booking.com/
+        2. select currency 
+        3. select language
+        4. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
+        5. press search button
+        6. redirect to the page with search results
+        7. press button "Price(lowest first)" on the sort bar
+        8. check if the list of search results is sorted in ascending order of price
+        
+        
+    checkSortByStarsCount:
+ 
+        1. open page https://www.booking.com/
+        2. select currency 
+        3. select language
+        4. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
+        5. press search button
+        6. redirect to the page with search results
+        7. press button "Stars" on the sort bar
+        8. select option "stars[5 to 1]" on the drop-down list
+        8. check if the list of search results is sorted in descending order of number of stars
+        
+    checkSortByDistance:
+ 
+        1. open page https://www.booking.com/
+        2. select currency 
+        3. select language
+        4. enter data values for searching booking (departure, check-in date, check-out date, number of adults,
+        number of children, rooms number) according to the test data in properties-file(dev.properties, qa.properties)
+        5. press search button
+        6. redirect to the page with search results
+        7. open drop-down list on the sort bar
+        8. choose option "Distance From Downtown" on the drop-down list 
+        9. check if the list of search results is sorted in ascending order of distances from city center
+        
+> FilterTests    
